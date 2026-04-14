@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindCare - Mental Health Support Platform</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <i class="fas fa-heart"></i> MindCare
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#" onclick="app.navigateTo('home')" class="nav-link">Home</a></li>
+                    <li><a href="#" onclick="app.navigateTo('analysis')" class="nav-link">Analysis</a></li>
+                    <li><a href="#" onclick="app.navigateTo('dashboard')" class="nav-link">Dashboard</a></li>
+                    <li><a href="#" onclick="app.navigateTo('chatbot')" class="nav-link">Chat</a></li>
+                    <li><a href="#" onclick="app.navigateTo('therapy')" class="nav-link">Wellness</a></li>
+                </ul>
+                <div class="nav-right">
+                    <button class="theme-toggle" onclick="app.toggleTheme()">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="info-btn" onclick="app.showPrivacy()">
+                        <i class="fas fa-lock"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            
+            <!-- HOME PAGE -->
+            <section id="home" class="page active">
+                <div class="hero">
+                    <div class="hero-content">
+                        <h1 class="hero-title">Welcome to MindCare</h1>
+                        <p class="hero-subtitle">Your Safe Space for Mental Wellness</p>
+                        <p class="hero-description">
+                            We're here to help you understand your emotional state through AI-powered analysis
+                            and compassionate support. Your journey to better mental health starts here. 💙
+                        </p>
+                        <button class="btn btn-primary" onclick="app.navigateTo('analysis')">
+                            Get Started <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    <div class="hero-illustration">
+                        <div class="floating-card">
+                            <i class="fas fa-brain"></i>
+                            <p>AI Analysis</p>
+                        </div>
+                        <div class="floating-card card-2">
+                            <i class="fas fa-smile"></i>
+                            <p>Facial Detection</p>
+                        </div>
+                        <div class="floating-card card-3">
+                            <i class="fas fa-chart-line"></i>
+                            <p>Mood Tracking</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Features Overview -->
+                <section class="features-grid">
+                    <h2 class="section-title">Our Features</h2>
+                    <div class="grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">📝</div>
+                            <h3>Text Analysis</h3>
+                            <p>Write how you're feeling. Our AI analyzes your emotions with precision.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">😊</div>
+                            <h3>Facial Detection</h3>
+                            <p>Webcam capture or image upload for real-time emotion detection.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔗</div>
+                            <h3>Combined Analysis</h3>
+                            <p>Multi-modal analysis for comprehensive emotional assessment.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📊</div>
+                            <h3>Mood Dashboard</h3>
+                            <p>Track your mood trends with beautiful visualizations.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💬</div>
+                            <h3>AI Chatbot</h3>
+                            <p>Talk to our empathetic AI counselor 24/7.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🧘</div>
+                            <h3>Wellness Zone</h3>
+                            <p>Breathing, meditation, and calming resources.</p>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <!-- ANALYSIS PAGE -->
+            <section id="analysis" class="page">
+                <div class="container">
+                    <h1 class="page-title">Emotion Analysis</h1>
+                    
+                    <!-- Analysis Tabs -->
+                    <div class="analysis-tabs">
+                        <button class="tab-btn active" onclick="app.switchAnalysisTab('text')">
+                            <i class="fas fa-keyboard"></i> Text
+                        </button>
+                        <button class="tab-btn" onclick="app.switchAnalysisTab('face')">
+                            <i class="fas fa-camera"></i> Facial
+                        </button>
+                        <button class="tab-btn" onclick="app.switchAnalysisTab('voice')">
+                            <i class="fas fa-microphone"></i> Voice
+                        </button>
+                        <button class="tab-btn" onclick="app.switchAnalysisTab('combined')">
+                            <i class="fas fa-link"></i> Combined
+                        </button>
+                    </div>
+
+                    <!-- TEXT ANALYSIS -->
+                    <div id="text-analysis" class="analysis-section active">
+                        <div class="analysis-card gradient-blue">
+                            <h2>📝 How are you feeling today?</h2>
+                            <textarea id="textInput" class="emotion-input" 
+                                      placeholder="Share your thoughts and feelings... Be as honest as you'd like."
+                                      rows="6"></textarea>
+                            <button class="btn btn-primary" onclick="app.analyzeText()">
+                                Analyze Emotion <i class="fas fa-magic"></i>
+                            </button>
+                        </div>
+
+                        <div id="textResult" class="result-card hidden">
+                            <div id="textResultContent"></div>
+                        </div>
+                    </div>
+
+                    <!-- FACIAL ANALYSIS -->
+                    <div id="face-analysis" class="analysis-section">
+                        <div class="analysis-card gradient-blue">
+                            <h2>😊 Facial Expression Analysis</h2>
+                            <div class="face-options">
+                                <div class="option-group">
+                                    <h3>📷 Webcam Capture</h3>
+                                    <video id="webcam" class="webcam-preview" autoplay playsinline></video>
+                                    <div class="button-group">
+                                        <button class="btn btn-secondary" onclick="app.startWebcam()">
+                                            <i class="fas fa-video"></i> Start Webcam
+                                        </button>
+                                        <button class="btn btn-primary" onclick="app.captureWebcam()">
+                                            <i class="fas fa-camera"></i> Capture
+                                        </button>
+                                        <button class="btn btn-secondary" onclick="app.stopWebcam()">
+                                            <i class="fas fa-stop"></i> Stop
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="divider">or</div>
+
+                                <div class="option-group">
+                                    <h3>📁 Upload Image</h3>
+                                    <input type="file" id="faceImageInput" accept="image/*" onchange="app.handleImageUpload(this)">
+                                    <img id="previewImage" style="width: 100%; max-width: 300px; margin-top: 1rem; display: none;" alt="Preview of selected face">
+                                    <label for="faceImageInput" class="file-upload-label">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <span>Click to upload image</span>
+                                    </label>
+                                    <button class="btn btn-primary" onclick="app.analyzeFace()">
+                                        Analyze Face <i class="fas fa-magic"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="faceResult" class="result-card hidden">
+                            <div id="faceResultContent"></div>
+                        </div>
+                    </div>
+
+                    <!-- VOICE ANALYSIS -->
+                    <div id="voice-analysis" class="analysis-section">
+                        <div class="analysis-card gradient-blue">
+                            <h2>🎤 Voice Analysis</h2>
+                            <div class="voice-recorder">
+                                <p>Record your voice to analyze tone and emotion</p>
+                                <button class="btn btn-primary" onclick="app.startVoiceRecording()">
+                                    <i class="fas fa-microphone"></i> Start Recording
+                                </button>
+                                <button class="btn btn-secondary hidden" id="stopRecordBtn" onclick="app.stopVoiceRecording()">
+                                    <i class="fas fa-stop"></i> Stop Recording
+                                </button>
+                                <p id="recordingTime" class="recording-time"></p>
+                            </div>
+                        </div>
+
+                        <div id="voiceResult" class="result-card hidden">
+                            <div id="voiceResultContent"></div>
+                        </div>
+                    </div>
+
+                    <!-- COMBINED ANALYSIS -->
+                    <div id="combined-analysis" class="analysis-section">
+                        <div class="analysis-card gradient-blue">
+                            <h2>🔗 Combined Deep Analysis</h2>
+                            <p class="analysis-description">Combine text and facial analysis for comprehensive emotional assessment</p>
+                            
+                            <div class="combined-setup">
+                                <div class="setup-section">
+                                    <h3>Step 1: Text Input</h3>
+                                    <textarea id="combinedTextInput" class="emotion-input" 
+                                              placeholder="How are you feeling?"
+                                              rows="4"></textarea>
+                                </div>
+
+                                <div class="setup-section">
+                                    <h3>Step 2: Facial Expression</h3>
+                                    <input type="file" id="combinedImageInput" accept="image/*" onchange="app.handleCombinedImageUpload(this)">
+                                    <label for="combinedImageInput" class="file-upload-label">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <span>Upload image or use webcam</span>
+                                    </label>
+                                </div>
+
+                                <button class="btn btn-primary full-width" onclick="app.analyzeCombined()">
+                                    Run Combined Analysis <i class="fas fa-magic"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="combinedResult" class="result-card hidden">
+                            <div id="combinedResultContent"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DASHBOARD PAGE -->
+            <section id="dashboard" class="page">
+                <div class="container">
+                    <h1 class="page-title">Mood Dashboard</h1>
+
+                    <!-- Streak Card -->
+                    <div class="streak-card">
+                        <div class="streak-content">
+                            <h2>🔥 Your Wellness Streak</h2>
+                            <div class="streak-number" id="streakNumber">0</div>
+                            <p>days maintaining your mental health check-ins</p>
+                        </div>
+                        <button class="btn btn-primary" onclick="app.dailyCheckin()">
+                            Daily Check-in 
+                        </button>
+                    </div>
+
+                    <!-- Statistics -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">😊</div>
+                            <h3>Low Mood</h3>
+                            <div class="stat-value" id="lowMoodPercent">0%</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">😐</div>
+                            <h3>Medium Mood</h3>
+                            <div class="stat-value" id="mediumMoodPercent">0%</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">😢</div>
+                            <h3>High Mood</h3>
+                            <div class="stat-value" id="highMoodPercent">0%</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">📊</div>
+                            <h3>Total Entries</h3>
+                            <div class="stat-value" id="totalEntries">0</div>
+                        </div>
+                    </div>
+
+                    <!-- Period Selector -->
+                    <div class="period-selector">
+                        <button class="period-btn active" onclick="app.loadDashboard('week')">This Week</button>
+                        <button class="period-btn" onclick="app.loadDashboard('month')">This Month</button>
+                    </div>
+
+                    <!-- Calendar Heatmap -->
+                    <div class="dashboard-card">
+                        <h2>📅 Mood Heatmap</h2>
+                        <div id="moodHeatmap" class="heatmap-container"></div>
+                    </div>
+
+                    <!-- Mood Trend -->
+                    <div class="dashboard-card">
+                        <h2>📈 Mood Trend</h2>
+                        <div id="moodTrend" class="trend-info"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CHATBOT PAGE -->
+            <section id="chatbot" class="page">
+                <div class="container">
+                    <h1 class="page-title">MindCare Assistant</h1>
+
+                    <div class="chatbot-container">
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="chat-message bot-message">
+                                <div class="message-content">
+                                    <p>Hi there! 👋 I'm here to listen and support you. How are you feeling today?</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="chat-input-area">
+                            <textarea id="userMessage" class="chat-input" 
+                                      placeholder="Type your message here..."
+                                      rows="3"></textarea>
+                            <button class="btn btn-primary" onclick="app.sendChatMessage()">
+                                Send <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="quick-actions">
+                            <button class="quick-btn" onclick="app.sendQuickMessage('I am feeling sad')">😢 Sad</button>
+                            <button class="quick-btn" onclick="app.sendQuickMessage('I am stressed')">😠 Stressed</button>
+                            <button class="quick-btn" onclick="app.sendQuickMessage('I am anxious')">😰 Anxious</button>
+                            <button class="quick-btn" onclick="app.sendQuickMessage('I need help')">🆘 Help</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- THERAPY ZONE PAGE -->
+            <section id="therapy" class="page">
+                <div class="container">
+                    <h1 class="page-title">Wellness & Therapy Zone</h1>
+
+                    <!-- Breathing Exercise -->
+                    <div class="dashboard-card">
+                        <h2>🫁 Guided Breathing</h2>
+                        <div class="breathing-section">
+                            <div class="breathing-visualizer" id="breathingVisualizer">
+                                <div class="breath-circle"></div>
+                                <p id="breathingInstruction">Breathe In...</p>
+                            </div>
+                            <div class="exercise-selector">
+                                <button class="btn btn-secondary" onclick="app.startBreathingExercise('4-7-8')">
+                                    4-7-8 Exercise
+                                </button>
+                                <button class="btn btn-secondary" onclick="app.startBreathingExercise('box')">
+                                    Box Breathing
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Motivational Quotes -->
+                    <div class="dashboard-card">
+                        <h2>✨ Daily Motivation</h2>
+                        <div class="quote-card" id="quoteCard">
+                            <p class="quote-text" id="quoteText">Loading inspiration...</p>
+                            <button class="btn btn-primary" onclick="app.getNewQuote()">
+                                New Quote <i class="fas fa-redo"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Calming Music -->
+                    <div class="dashboard-card">
+                        <h2>🎵 Calming Music</h2>
+                        <div class="music-grid">
+                            <div class="music-card">
+                                <div class="music-icon">🎹</div>
+                                <h3>Calm Piano</h3>
+                                <p>45 minutes</p>
+                                <button class="btn btn-secondary" onclick="app.playMusic('piano')">Play</button>
+                            </div>
+                            <div class="music-card">
+                                <div class="music-icon">🌊</div>
+                                <h3>Nature Sounds</h3>
+                                <p>60 minutes</p>
+                                <button class="btn btn-secondary" onclick="app.playMusic('nature')">Play</button>
+                            </div>
+                            <div class="music-card">
+                                <div class="music-icon">🌙</div>
+                                <h3>Ambient Meditation</h3>
+                                <p>30 minutes</p>
+                                <button class="btn btn-secondary" onclick="app.playMusic('ambient')">Play</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Activities Suggestions -->
+                    <div class="dashboard-card">
+                        <h2>💡 Suggested Activities</h2>
+                        <div class="activities-list" id="activitiesList"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Result Modal -->
+        <div id="resultModal" class="modal hidden">
+            <div class="modal-content">
+                <button class="close-btn" onclick="app.closeModal()">&times;</button>
+                <div id="modalBody"></div>
+            </div>
+        </div>
+
+        <!-- Privacy Modal -->
+        <div id="privacyModal" class="modal hidden">
+            <div class="modal-content privacy-modal">
+                <button class="close-btn" onclick="app.closePrivacyModal()">&times;</button>
+                <h2>🔒 Privacy & Safety</h2>
+                <div id="privacyContent"></div>
+            </div>
+        </div>
+
+        <!-- Emergency Alert -->
+        <div id="emergencyAlert" class="emergency-alert hidden">
+            <div class="alert-content">
+                <h2>🆘 We're Concerned About You</h2>
+                <p>If you're in crisis, please reach out for help immediately:</p>
+                <div class="emergency-contacts">
+                    <div class="contact">
+                        <strong>Suicide Prevention Lifeline:</strong> <a href="tel:988">988</a>
+                    </div>
+                    <div class="contact">
+                        <strong>Crisis Text Line:</strong> Text HOME to <a href="#">741741</a>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="app.closeEmergencyAlert()">Dismiss</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/utils.js"></script>
+</body>
+</html>

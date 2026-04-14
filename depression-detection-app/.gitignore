@@ -1,0 +1,117 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv
+
+# Flask
+instance/
+.webassets-cache
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+mood_data.db
+
+# Logs
+*.log
+logs/
+
+# Temporary Files
+*.tmp
+*.bak
+*.cache
+.cache/
+
+# OS
+Thumbs.db
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Node (if frontend uses it)
+node_modules/
+npm-debug.log
+package-lock.json
+yarn.lock
+
+# Compiled Files
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+
+# Media Files (optional - keep these if needed)
+*.mp3
+*.wav
+*.mp4
+*.avi
+*.jpg
+*.png
+*.gif
+
+# Coverage
+.coverage
+htmlcov/
+
+# Type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pytest
+.pytest_cache/
+
+# IDE Settings
+.vscode/settings.json
+.vscode/launch.json
+
+# System
+.DS_Store
+Thumbs.db
+
+# Sensitive
+secrets.json
+config.secret.json
+api_keys.txt
